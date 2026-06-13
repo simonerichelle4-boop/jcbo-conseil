@@ -11,3 +11,86 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .mobile-only {
+    display: block !important;
+  }
+  
+  /* Adapter le padding des containers sur mobile */
+  .header-container {
+    padding: 12px 20px !important;
+  }
+  
+  .mobile-menu {
+    padding: 16px 20px !important;
+  }
+  
+  /* Formation specific */
+  .formation-hero {
+    padding: 40px 20px !important;
+  }
+  
+  .formation-hero-title {
+    font-size: 28px !important;
+  }
+  
+  .formation-hero-subtitle {
+    font-size: 16px !important;
+  }
+  
+  .formation-container {
+    padding: 40px 20px !important;
+  }
+  
+  .formation-navigation {
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+  }
+  
+  .formation-nav-button {
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+  }
+  
+  .formation-modules-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .certification-card {
+    padding: 32px 24px !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  
+  .certification-button-container {
+    align-items: stretch !important;
+    width: 100% !important;
+    min-width: auto !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+  
+  .desktop-only {
+    display: block !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+}
