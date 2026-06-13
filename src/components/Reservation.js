@@ -82,6 +82,15 @@ function Reservation() {
     );
     return found ? found.id : prestations[1].id;
   };
+    // ==================== STRIPE PAYMENT LINKS ====================
+  const paymentLinks = {
+    'diagnostic-strategique': 'https://buy.stripe.com/test_fZubJ076x7lA5AN4zk2Ry05',
+    'coaching-strategique': 'https://buy.stripe.com/test_eVqfZgfD30Xc3sF2rc2Ry04',
+    'accompagnement-premium': 'https://buy.stripe.com/test_9B64gy1MdcFUbZb2rc2Ry03',
+    'programme-complet': 'https://buy.stripe.com/test_9B66oG3Ul35k4wJ3vg2Ry02',
+    'coaching-en-ligne': 'https://buy.stripe.com/test_9B6dR89eFcFUbZb5Do2Ry01',
+    'seminaire': '#'
+  };
 
   // Initialiser selected après le premier rendu
   useEffect(() => {
@@ -105,14 +114,17 @@ function Reservation() {
     return `${timestamp}-${random}-${random2}`;
   };
 
-  // Simuler le paiement et générer le lien d'accès
+
+    // Fonction de paiement Stripe
   const handlePaiement = () => {
-    if (prestationSelectionnee?.id === 'programme-complet') {
-      const token = genererToken();
-      setTokenAcces(token);
-      setPaiementEffectue(true);
+    if (!prestationSelectionnee) return;
+
+    const paymentUrl = paymentLinks[prestationSelectionnee.id];
+
+    if (paymentUrl && paymentUrl !== '#') {
+      window.location.href = paymentUrl;
     } else {
-      setPaiementEffectue(true);
+      alert("Le lien de paiement pour cette prestation n'est pas encore configuré.");
     }
   };
 

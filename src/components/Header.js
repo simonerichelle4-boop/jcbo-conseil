@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from './images/logo_jcbo.jpeg';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const location = useLocation();
 
   const liens = [
@@ -13,8 +14,14 @@ function Header() {
     { label: 'Expertises', path: '/expertises' },
     { label: 'Références', path: '/references' },
     { label: 'Contenus', path: '/contenus' },
-    { label: 'Contact', path: '/contact' },        // ← Ajouté ici
+    { label: 'Contact', path: '/contact' },
   ];
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const styles = {
     header: {
@@ -28,10 +35,11 @@ function Header() {
     container: {
       maxWidth: '1280px',
       margin: '0 auto',
-      padding: '12px 40px',
+      padding: isMobile ? '12px 20px' : '12px 40px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
+      flexWrap: 'wrap',
     },
     logoContainer: {
       display: 'flex',
@@ -40,25 +48,27 @@ function Header() {
       textDecoration: 'none',
     },
     logoImg: {
-      height: '56px',
-      width: '56px',
+      height: '48px',
+      width: '48px',
       objectFit: 'contain',
     },
     logoTitle: {
       fontWeight: 'bold',
-      fontSize: '18px',
+      fontSize: isMobile ? '16px' : '18px',
       color: '#080E24',
       margin: 0,
     },
     logoSubtitle: {
-      fontSize: '12px',
+      fontSize: '11px',
       color: '#080E24',
       margin: 0,
     },
+
+    // Navigation Desktop
     nav: {
-      display: 'flex',
+      display: isMobile ? 'none' : 'flex',
       alignItems: 'center',
-      gap: '32px',
+      gap: '28px',
     },
     lien: (isActive) => ({
       textDecoration: 'none',
@@ -67,45 +77,55 @@ function Header() {
       color: isActive ? '#C9A445' : '#080E24',
       transition: 'color 0.2s',
     }),
+
+    // Boutons
     boutons: {
-      display: 'flex',
+      display: isMobile ? 'none' : 'flex',
       alignItems: 'center',
       gap: '12px',
     },
     btnDiagnostic: {
-      padding: '10px 20px',
+      padding: '8px 18px',
       fontSize: '14px',
       fontWeight: '500',
       color: '#080E24',
       backgroundColor: 'transparent',
       border: '1px solid #080E24',
-      borderRadius: '12px',
+      borderRadius: '8px',
       cursor: 'pointer',
       textDecoration: 'none',
+      whiteSpace: 'nowrap',
     },
     btnReserver: {
-      padding: '10px 20px',
+      padding: '8px 18px',
       fontSize: '14px',
       fontWeight: '500',
       color: '#ffffff',
       backgroundColor: '#C9A445',
       border: 'none',
-      borderRadius: '12px',
+      borderRadius: '8px',
       cursor: 'pointer',
       textDecoration: 'none',
+      whiteSpace: 'nowrap',
     },
+
+    // Hamburger
     hamburger: {
-      display: 'none',
-      fontSize: '24px',
+      display: isMobile ? 'block' : 'none',
+      fontSize: '28px',
       background: 'none',
       border: 'none',
       cursor: 'pointer',
       color: '#080E24',
+      padding: '5px',
     },
+
+    // Menu Mobile
     mobileMenu: {
+      width: '100%',
       backgroundColor: '#ffffff',
       borderTop: '1px solid #f0f0f0',
-      padding: '16px 40px',
+      padding: '20px',
       display: 'flex',
       flexDirection: 'column',
       gap: '16px',
@@ -120,20 +140,17 @@ function Header() {
         <Link to="/" style={styles.logoContainer}>
           <img src={logo} alt="JCBO Conseil" style={styles.logoImg} />
           <div>
-            <p style={styles.logoTitle}>JCBO-Conseil</p>
+            <p style={styles.logoTitle}>JCBO Conseil</p>
             <p style={styles.logoSubtitle}>Conseil • Coaching • Formation</p>
           </div>
         </Link>
 
-        {/* HAMBURGER MENU (Mobile only) */}
-        <button 
-          style={styles.hamburger} 
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+        {/* HAMBURGER */}
+        <button style={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? '✕' : '☰'}
         </button>
 
-        {/* LIENS DE NAVIGATION (Desktop only) */}
+        {/* NAV DESKTOP */}
         <nav style={styles.nav}>
           {liens.map((lien) => (
             <Link
@@ -146,7 +163,7 @@ function Header() {
           ))}
         </nav>
 
-        {/* BOUTONS (Desktop only) */}
+        {/* BOUTONS DESKTOP */}
         <div style={styles.boutons}>
           <Link to="/diagnostic" style={styles.btnDiagnostic}>
             Diagnostic gratuit
@@ -159,7 +176,7 @@ function Header() {
       </div>
 
       {/* MENU MOBILE */}
-      {menuOpen && (
+      {menuOpen && isMobile && (
         <div style={styles.mobileMenu}>
           {liens.map((lien) => (
             <Link
@@ -171,10 +188,10 @@ function Header() {
               {lien.label}
             </Link>
           ))}
-          <Link to="/diagnostic" style={styles.btnDiagnostic}>
+          <Link to="/diagnostic" style={styles.btnDiagnostic} onClick={() => setMenuOpen(false)}>
             Diagnostic gratuit
           </Link>
-          <Link to="/reservation" style={styles.btnReserver}>
+          <Link to="/reservation" style={styles.btnReserver} onClick={() => setMenuOpen(false)}>
             Réserver →
           </Link>
         </div>
