@@ -5,6 +5,39 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+
+/* Skip link pour accessibilité */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #C9A445;
+  color: #000000;
+  padding: 8px 16px;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+main {
+  scroll-margin-top: 0;
+}
+
+/* Amélioration du contraste pour les textes gris */
+.text-gray {
+  color: #333333 !important;
+}
+
+.text-gray-light {
+  color: #555555 !important;
 }
 
 code {
