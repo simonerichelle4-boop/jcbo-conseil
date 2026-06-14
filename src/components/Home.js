@@ -15,14 +15,15 @@ function Accueil() {
 
   const styles = {
     hero: {
-      minHeight: isMobile ? '100vh' : '155vh',
+      minHeight: isMobile ? '80vh' : '155vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
       backgroundImage: `url(${heroBg})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
+      backgroundSize: isMobile ? 'auto 100%' : 'cover',
+      backgroundPosition: isMobile ? 'center 30%' : 'center',
+      backgroundRepeat: isMobile ? 'no-repeat' : 'no-repeat',
       color: 'white',
       textAlign: 'center',
       padding: '0 20px',
