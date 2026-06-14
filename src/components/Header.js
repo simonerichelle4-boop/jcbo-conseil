@@ -162,6 +162,7 @@ function Header() {
               key={lien.path}
               to={lien.path}
               style={styles.lien(location.pathname === lien.path)}
+              aria-label={`Naviguer vers ${lien.label}`}
             >
               {lien.label}
             </Link>
@@ -170,10 +171,10 @@ function Header() {
 
         {/* BOUTONS DESKTOP */}
         <div style={styles.boutons}>
-          <Link to="/diagnostic" style={styles.btnDiagnostic}>
+          <Link to="/diagnostic" style={styles.btnDiagnostic} aria-label="Effectuer un diagnostic gratuit">
             Diagnostic gratuit
           </Link>
-          <Link to="/reservation" style={styles.btnReserver}>
+          <Link to="/reservation" style={styles.btnReserver} aria-label="Réserver une séance">
             Réserver →
           </Link>
         </div>
@@ -189,14 +190,15 @@ function Header() {
               to={lien.path}
               onClick={() => setMenuOpen(false)}
               style={styles.lien(location.pathname === lien.path)}
+              aria-label={`Naviguer vers ${lien.label}`}
             >
               {lien.label}
             </Link>
           ))}
-          <Link to="/diagnostic" style={styles.btnDiagnostic} onClick={() => setMenuOpen(false)}>
+          <Link to="/diagnostic" style={styles.btnDiagnostic} onClick={() => setMenuOpen(false)} aria-label="Effectuer un diagnostic gratuit">
             Diagnostic gratuit
           </Link>
-          <Link to="/reservation" style={styles.btnReserver} onClick={() => setMenuOpen(false)}>
+          <Link to="/reservation" style={styles.btnReserver} onClick={() => setMenuOpen(false)} aria-label="Réserver une séance">
             Réserver →
           </Link>
         </nav>

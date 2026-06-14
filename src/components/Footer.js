@@ -131,6 +131,8 @@ function Footer() {
             src={logo}
             alt="JCBO Conseil"
             loading="lazy"
+            width="90"
+            height="90"
             style={styles.logo}
           />
 

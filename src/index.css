@@ -40,6 +40,20 @@ main {
   color: #555555 !important;
 }
 
+/* Amélioration du contraste pour les liens et textes dorés */
+.text-gold {
+  color: #B8942F !important;
+}
+
+.text-gold-dark {
+  color: #8B7225 !important;
+}
+
+/* Amélioration du contraste pour les textes sur fond sombre */
+.text-on-dark {
+  color: #E8E8E8 !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
