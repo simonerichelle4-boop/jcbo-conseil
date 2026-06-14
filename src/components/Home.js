@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiTrendingUp, FiCast, FiBookOpen } from 'react-icons/fi';
-import heroBg from "./images/figma_jcbo.png";
+import heroBg from "./images/couverture-site.jpeg";
 import boyangImg from "./images/boyang.jpeg";
 
 function Accueil() {
