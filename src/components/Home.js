@@ -160,7 +160,7 @@ function Accueil() {
   };
 
   return (
-    <div>
+    <div role="main">
       {/* HERO SECTION */}
       <section style={styles.hero}>
         <div style={styles.heroOverlay}></div>
@@ -316,6 +316,7 @@ function Accueil() {
               <img
                 src={boyangImg}
                 alt="Jean-Christophe Boyang-Tsang"
+                loading="lazy"
                 style={styles.aproposImageImg}
               />
             </div>

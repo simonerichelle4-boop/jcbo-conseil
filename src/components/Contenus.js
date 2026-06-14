@@ -168,6 +168,7 @@ function Contenus() {
                 <img 
                   src={article.image} 
                   alt={article.title}
+                  loading="lazy"
                   style={{ height: '220px', width: '100%', objectFit: 'cover' }}
                 />
                 

@@ -146,12 +146,17 @@ function Header() {
         </Link>
 
         {/* HAMBURGER */}
-        <button style={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
+        <button 
+          style={styles.hamburger} 
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Ouvrir le menu de navigation"
+          aria-expanded={menuOpen}
+        >
           {menuOpen ? '✕' : '☰'}
         </button>
 
         {/* NAV DESKTOP */}
-        <nav style={styles.nav}>
+        <nav role="navigation" aria-label="Navigation principale" style={styles.nav}>
           {liens.map((lien) => (
             <Link
               key={lien.path}
@@ -177,7 +182,7 @@ function Header() {
 
       {/* MENU MOBILE */}
       {menuOpen && isMobile && (
-        <div style={styles.mobileMenu}>
+        <nav role="navigation" aria-label="Menu mobile" style={styles.mobileMenu}>
           {liens.map((lien) => (
             <Link
               key={lien.path}
@@ -194,7 +199,7 @@ function Header() {
           <Link to="/reservation" style={styles.btnReserver} onClick={() => setMenuOpen(false)}>
             Réserver →
           </Link>
-        </div>
+        </nav>
       )}
     </header>
   );

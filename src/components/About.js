@@ -92,7 +92,7 @@ function APropos() {
         <div style={styles.container}>
           <div style={styles.contentGrid}>
             <div>
-              <img src={boyangImg} alt="Jean-Christophe Boyang-Tsang" style={styles.image} />
+              <img src={boyangImg} alt="Jean-Christophe Boyang-Tsang" loading="lazy" style={styles.image} />
             </div>
             <div style={styles.textContent}>
               <p>JCBO, ce sont les initiales de Jean-Christophe Boyang-Tsang, fondateur et unique force motrice derrière notre entreprise. Pas un théoricien - un homme de terrain.</p>

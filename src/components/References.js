@@ -96,6 +96,7 @@ function References() {
                   <img
                     src={image.src}
                     alt={image.alt}
+                    loading="lazy"
                     style={{
                       position: 'absolute',
                       inset: 0,

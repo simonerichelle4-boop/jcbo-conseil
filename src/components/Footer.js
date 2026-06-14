@@ -130,6 +130,7 @@ function Footer() {
           <img
             src={logo}
             alt="JCBO Conseil"
+            loading="lazy"
             style={styles.logo}
           />
 
