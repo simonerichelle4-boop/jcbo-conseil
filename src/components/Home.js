@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FiTrendingUp, FiCast, FiBookOpen } from 'react-icons/fi';
 import heroBg from "./images/couverture-site.jpeg";
 import boyangImg from "./images/boyang.jpeg";
 
@@ -21,8 +18,8 @@ function Accueil() {
       justifyContent: 'center',
       position: 'relative',
       backgroundImage: `url(${heroBg})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
+      backgroundSize: isMobile ? 'cover' : 'cover',
+      backgroundPosition: isMobile ? '30% center' : 'center',
       color: 'white',
       textAlign: 'center',
       padding: '0 20px',
