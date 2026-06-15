@@ -39,10 +39,10 @@ function Expertises() {
       heroSubtitle: { fontSize: isMobile ? '1rem' : '1.15rem', maxWidth: '900px', margin: '0 auto', lineHeight: '1.7', color: '#d1d5db' },
       grid: { display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' },
       card: {
-        backgroundColor: '#0F172A', color: 'white', padding: '30px', borderRadius: '14px', border: '1px solid #C9A445', transition: 'all 0.3s ease', minHeight: '320px'
+        backgroundColor: '#0F172A', color: 'white', padding: isMobile ? '20px' : '30px', borderRadius: '14px', border: '1px solid #C9A445', transition: 'all 0.3s ease', minHeight: isMobile ? 'auto' : '320px'
       },
       titleAccent: { color: '#C9A445', fontWeight: 700, marginBottom: '6px' },
-      price: { fontSize: '1.4rem', fontWeight: 800, color: '#080E24', backgroundColor: '#C9A445', padding: '8px 12px', borderRadius: '12px', display: 'inline-block', margin: '12px 0' },
+      price: { fontSize: isMobile ? '1.2rem' : '1.4rem', fontWeight: 800, color: '#080E24', backgroundColor: '#C9A445', padding: '8px 12px', borderRadius: '12px', display: 'inline-block', margin: '12px 0' },
       btn: { width: '100%', padding: '12px 14px', backgroundColor: '#C9A445', color: '#080E24', borderRadius: '8px', fontWeight: 700, border: 'none', cursor: 'pointer' },
       pill: { display: 'inline-block', padding: '6px 10px', border: '1px solid #C9A445', borderRadius: '10px', marginTop: '10px', color: '#C9A445' },
       smallMuted: { color: '#9CA3AF', fontSize: '0.95rem' },
@@ -63,7 +63,7 @@ function Expertises() {
           </div>
         </section>
 
-        <section style={{ padding: '60px 20px', backgroundColor: '#f8fafc' }}>
+        <section style={{ padding: isMobile ? '40px 20px' : '60px 20px', backgroundColor: '#f8fafc' }}>
           <div style={styles.container}>
             <div style={styles.grid}>
 
@@ -71,7 +71,7 @@ function Expertises() {
               <div style={styles.card} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-8px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
                 <FaSearch size={40} color="#C9A445" style={{ marginBottom: '10px' }} />
                 <div style={styles.titleAccent}>DIAGNOSTIC STRATÉGIQUE</div>
-                <h3 style={{ fontSize: '1.25rem', margin: '6px 0' }}>Audit complet</h3>
+                <h3 style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', margin: '6px 0' }}>Audit complet</h3>
                 <div style={styles.price}>490€ <span style={{fontSize:'0.85rem', marginLeft:'8px', color:'#081021', fontWeight: 600}}></span></div>
                 <p style={styles.smallMuted}>Analyse complète de votre positionnement, marché et concurrence.</p>
                 <div style={{ marginTop: '12px' }}>
@@ -90,7 +90,7 @@ function Expertises() {
               <div style={styles.card} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-8px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
                 <FaUserTie size={40} color="#C9A445" style={{ marginBottom: '10px' }} />
                 <div style={styles.titleAccent}>COACHING STRATÉGIQUE</div>
-                <h3 style={{ fontSize: '1.25rem', margin: '6px 0' }}>Accompagnement individuel</h3>
+                <h3 style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', margin: '6px 0' }}>Accompagnement individuel</h3>
                 <div style={styles.price}>250€ <span style={{fontSize:'0.85rem', marginLeft:'8px', color:'#081021', fontWeight: 600}}></span> </div>
                 <p style={styles.smallMuted}>Accompagnement sur-mesure pour structurer et accélérer votre activité.</p>
                 <ul style={{ lineHeight: '1.9', margin: '12px 0 14px 0' }}>
@@ -110,7 +110,7 @@ function Expertises() {
               <div style={styles.card} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-8px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
                 <FaCrown size={40} color="#C9A445" style={{ marginBottom: '10px' }} />
                 <div style={styles.titleAccent}>ACCOMPAGNEMENT PREMIUM</div>
-                <h3 style={{ fontSize: '1.25rem', margin: '6px 0' }}>Programme 3 mois</h3>
+                <h3 style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', margin: '6px 0' }}>Programme 3 mois</h3>
                 <div style={styles.price}>2400€ <span style={{fontSize:'0.85rem', marginLeft:'8px', color:'#081021', fontWeight: 600}}></span></div>
                 <p style={styles.smallMuted}>Programme intensif: 2 séances par mois, suivi dédié et actions concrètes pour développer votre business.</p>
                 <div style={{ border: '1px dashed #C9A445', padding: '8px 10px', borderRadius: '8px', display: 'inline-block', marginBottom: '14px' }}>vos bénéfices</div>
@@ -126,7 +126,7 @@ function Expertises() {
               <div style={styles.card} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-8px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
                 <FaUsers size={40} color="#C9A445" style={{ marginBottom: '10px' }} />
                 <div style={styles.titleAccent}>SÉMINAIRE DE GROUPE</div>
-                <h3 style={{ fontSize: '1.25rem', margin: '6px 0' }}>Montée en compétences</h3>
+                <h3 style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', margin: '6px 0' }}>Montée en compétences</h3>
                 <div style={styles.price}>Sur devis <span style={{fontSize:'0.85rem', marginLeft:'8px', color:'#081021', fontWeight: 600}}>• 1 à 3 jours</span></div>
                 <p style={styles.smallMuted}>Programmes adaptés par secteur, mise en situation et outils pratiques pour vos équipes.</p>
                 <div style={{ border: '1px dashed #C9A445', padding: '8px 10px', borderRadius: '8px', display: 'inline-block', marginBottom: '14px' }}>vos bénéfices</div>
@@ -152,7 +152,7 @@ function Expertises() {
                  <div style={{ fontSize: '0.9rem', color:"#C9A445" , fontFamily: "'Helvetica Neue', serif"}}>Nouveau </div>
                 <div style={styles.titleAccent}>COACHING EN LIGNE</div> <div style={styles.pill}>650€  </div>
                 <p style={styles.smallMuted}>Accédez à nos modules de coaching en ligne où que vous soyez.</p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px', marginTop: '16px', marginBottom: '18px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: '14px', marginTop: '16px', marginBottom: '18px' }}>
                   <div style={{ background: '#081021', padding: '14px', borderRadius: 10, display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                     <FaLightbulb size={28} color="#C9A445" />
                     <div>
@@ -205,7 +205,7 @@ function Expertises() {
               <div style={Object.assign({}, styles.card, { gridColumn: 'span 1' })} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-8px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
                 <FaCertificate size={40} color="#C9A445" style={{ marginBottom: '10px' }} />
                 <div style={styles.titleAccent}>PROGRAMME COMPLET</div>   <div style={{ border: '1px dashed #C9A445', padding: '8px 10px', borderRadius: '8px', display: 'inline-block', marginBottom: '14px' }}> A partir de 800€ </div>
-                <h3 style={{ fontSize: '1.15rem', margin: '6px 0' }}>Nos modules de formation</h3>
+                <h3 style={{ fontSize: isMobile ? '1rem' : '1.15rem', margin: '6px 0' }}>Nos modules de formation</h3>
                 <p style={styles.smallMuted}>Programme structuré en 3 niveaux pour transformer votre approche commerciale et managériale.</p>
 
                 <div style={styles.modulesBox}>
@@ -256,12 +256,12 @@ function Expertises() {
         </section>
 
       {/* FAQ */}
-      <section style={{ padding: '60px 20px', backgroundColor: '#f8fafc' }}>
+      <section style={{ padding: isMobile ? '40px 20px' : '60px 20px', backgroundColor: '#f8fafc' }}>
         <div style={styles.container}>
-          <h2 style={{ textAlign: 'center', fontSize: '2.4rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '28px' }}>Questions fréquentes</h2>
+          <h2 style={{ textAlign: 'center', fontSize: isMobile ? '1.8rem' : '2.4rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '28px' }}>Questions fréquentes</h2>
           <div>
             {faq.map((item, i) => (
-              <div key={i} style={{ background: '#ffffff', borderRadius: 8, padding: '18px 22px', marginBottom: 12, boxShadow: '0 2px 6px rgba(2,6,23,0.04)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div key={i} style={{ background: '#ffffff', borderRadius: 8, padding: isMobile ? '14px 16px' : '18px 22px', marginBottom: 12, boxShadow: '0 2px 6px rgba(2,6,23,0.04)', display: 'flex', alignItems: isMobile ? 'flex-start' : 'center', justifyContent: 'space-between' }}>
                 <div style={{ flex: 1, paddingRight: 12 }}>
                   <div style={{ fontWeight: 700 }}>{item.q}</div>
                   {openFAQ === i && <div style={{ color: '#374151', marginTop: 10 }}>{item.a}</div>}
@@ -276,11 +276,11 @@ function Expertises() {
       </section>
 
         {/* CTA before footer */}
-        <section style={{ padding: '60px 20px', backgroundColor: '#080E24', color: 'white', textAlign: 'center' }}>
+        <section style={{ padding: isMobile ? '40px 20px' : '60px 20px', backgroundColor: '#080E24', color: 'white', textAlign: 'center' }}>
           <div style={styles.container}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '14px' }}>Prêt à transformer votre activité ?</h2>
+            <h2 style={{ fontSize: isMobile ? '1.6rem' : '2rem', marginBottom: '14px' }}>Prêt à transformer votre activité ?</h2>
             <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>Réservez une séance  pour un parcours sur-mesure.</p>
-            <Link to="/reservation" style={{ display: 'inline-block', padding: '14px 28px', backgroundColor: '#C9A445', color: '#080E24', borderRadius: '8px', fontWeight: 700, textDecoration: 'none' }}>Réserver une séance →</Link>
+            <Link to="/reservation" style={{ display: 'inline-block', padding: isMobile ? '12px 20px' : '14px 28px', backgroundColor: '#C9A445', color: '#080E24', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: isMobile ? '0.9rem' : '1rem' }}>Réserver une séance →</Link>
           </div>
         </section>
       </div>
