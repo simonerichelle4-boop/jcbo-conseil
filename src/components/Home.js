@@ -21,7 +21,7 @@ function Accueil() {
       justifyContent: 'center',
       position: 'relative',
       backgroundImage: `url(${heroBg})`,
-      backgroundSize: isMobile ? 'cover' : 'cover',
+      backgroundSize: isMobile ? 'contain' : 'cover',
       backgroundPosition: isMobile ? 'center center' : 'center',
       backgroundRepeat: isMobile ? 'no-repeat' : 'no-repeat',
       backgroundColor: isMobile ? '#080E24' : 'transparent',
