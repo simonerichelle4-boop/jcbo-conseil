@@ -22,7 +22,7 @@ function Accueil() {
       position: 'relative',
       backgroundImage: `url(${heroBg})`,
       backgroundSize: isMobile ? 'cover' : 'cover',
-      backgroundPosition: isMobile ? 'center 35%' : 'center',
+      backgroundPosition: isMobile ? 'center center' : 'center',
       backgroundRepeat: isMobile ? 'no-repeat' : 'no-repeat',
       backgroundColor: isMobile ? '#080E24' : 'transparent',
       color: 'white',
