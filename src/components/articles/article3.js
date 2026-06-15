@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 function Article3() {
   return (
-    <div style={{ padding: '60px 20px', maxWidth: '900px', margin: '0 auto', lineHeight: '1.85', fontSize: '1.08rem' }}>
+    <div className="article-container">
       
       <Link to="/contenus" style={{ color: '#C9A445', textDecoration: 'none', marginBottom: '30px', display: 'inline-block' }}>
         ← Retour aux articles
       </Link>
 
-      <h1 style={{ fontSize: '2.8rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '20px', color: '#080E24' }}>
+      <h1 className="article-title">
         Comment convaincre un client d'acheter ? Les vraies clés pour vendre sans forcer
       </h1>
       

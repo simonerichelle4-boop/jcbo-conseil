@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FaFilePdf, 
@@ -7,6 +7,13 @@ import {
 } from 'react-icons/fa';
 
 function Contenus() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const articles = [
     {
@@ -44,16 +51,16 @@ function Contenus() {
   ];
 
   const styles = {
-    container: { maxWidth: '1280px', margin: '0 auto', padding: '0 20px' },
+    container: { maxWidth: '1280px', margin: '0 auto', padding: '0 20px', boxSizing: 'border-box' },
 
     hero: { 
-      padding: '140px 20px 100px', 
+      padding: isMobile ? '80px 16px 50px' : '140px 20px 100px', 
       backgroundColor: '#080E24', 
       color: 'white', 
       textAlign: 'center' 
     },
     heroLabel: {
-      fontSize: '1rem',
+      fontSize: '0.9rem',
       textTransform: 'uppercase',
       color: '#C9A445',
       letterSpacing: '0.18em',
@@ -61,15 +68,16 @@ function Contenus() {
       fontWeight: '700'
     },
     heroTitle: { 
-      fontSize: '3.5rem', 
+      fontSize: isMobile ? '2.2rem' : '3.5rem', 
       fontFamily: "'Cormorant Garamond', serif", 
       marginBottom: '20px' 
     },
     heroSubtitle: { 
-      fontSize: '1.35rem', 
+      fontSize: isMobile ? '1.05rem' : '1.35rem', 
       maxWidth: '700px', 
       margin: '0 auto', 
-      color: '#d1d5db' 
+      color: '#d1d5db',
+      lineHeight: '1.6'
     },
     heroLine: {
       width: '80px',
@@ -78,12 +86,12 @@ function Contenus() {
       margin: '0 auto 30px'
     },
 
-    section: { padding: '100px 20px' },
+    section: { padding: isMobile ? '50px 16px' : '100px 20px' },
     sectionTitle: { 
-      fontSize: '2.8rem', 
+      fontSize: isMobile ? '2rem' : '2.8rem', 
       fontFamily: "'Cormorant Garamond', serif", 
       textAlign: 'center', 
-      marginBottom: '60px',
+      marginBottom: isMobile ? '35px' : '60px',
       color: '#080E24'
     },
 
@@ -97,14 +105,15 @@ function Contenus() {
     resourceCard: {
       backgroundColor: '#0B122D',
       color: 'white',
-      padding: '40px 30px',
+      padding: isMobile ? '30px 20px' : '40px 30px',
       borderRadius: '16px',
       boxShadow: '0 10px 30px rgba(0,0,0,0.18)',
       transition: 'all 0.3s ease',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      minHeight: '360px'
+      minHeight: isMobile ? 'auto' : '360px',
+      gap: '20px'
     },
     ctaButton: {
       backgroundColor: '#C9A445',
@@ -157,27 +166,31 @@ function Contenus() {
           <h2 style={styles.sectionTitle}>Articles récents</h2>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(380px, 1fr))',
             gap: '30px'
           }}>
             {articles.map((article) => (
               <div key={article.id} style={styles.articleCard}
-                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
-                onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                onMouseEnter={(e) => {
+                  if (!isMobile) e.currentTarget.style.transform = 'translateY(-8px)';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isMobile) e.currentTarget.style.transform = 'translateY(0)';
+                }}
               >
                 <img 
-                  src={article.image} 
-                  alt={article.title}
-                  loading="lazy"
-                  style={{ height: '220px', width: '100%', objectFit: 'cover' }}
+                   src={article.image} 
+                   alt={article.title}
+                   loading="lazy"
+                   style={{ height: '220px', width: '100%', objectFit: 'cover' }}
                 />
                 
-                <div style={{ padding: '28px' }}>
+                <div style={{ padding: isMobile ? '20px' : '28px' }}>
                   <div style={{ color: '#C9A445', fontSize: '0.95rem', marginBottom: '12px' }}>
                     {article.date}
                   </div>
                   <h3 style={{ 
-                    fontSize: '1.65rem', 
+                    fontSize: isMobile ? '1.45rem' : '1.65rem', 
                     fontFamily: "'Cormorant Garamond', serif", 
                     marginBottom: '12px',
                     lineHeight: '1.3'
@@ -206,107 +219,118 @@ function Contenus() {
       </section>
 
       {/* Ressources gratuites */}
-      
-      <section style={{ padding: '100px 20px', backgroundColor: '#f8fafc' }}>
+      <section style={{ padding: isMobile ? '50px 16px' : '100px 20px', backgroundColor: '#f8fafc' }}>
         <div style={styles.container}>
           <h2 style={styles.sectionTitle}>Ressources gratuites</h2>
           
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(340px, 1fr))',
             gap: '30px'
           }}>
 
             {/* Guide 1 */}
             <div style={styles.resourceCard}>
-              <FaFilePdf size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
-              <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Guide PDF</div>
-              <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
-                Les 5 clés du Mindset Entrepreneurial
-              </h3>
-              <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '30px' }}>
-                Les fondamentaux pour adopter l'état d'esprit gagnant d'un entrepreneur performant.
-              </p>
+              <div>
+                <FaFilePdf size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
+                <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Guide PDF</div>
+                <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
+                  Les 5 clés du Mindset Entrepreneurial
+                </h3>
+                <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '20px' }}>
+                  Les fondamentaux pour adopter l'état d'esprit gagnant d'un entrepreneur performant.
+                </p>
+              </div>
               <a href="/ressources/GUIDE1.pdf" download style={styles.downloadButton}>Télécharger le guide</a>
             </div>
 
             {/* Guide 2 */}
             <div style={styles.resourceCard}>
-              <FaFilePdf size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
-              <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Guide PDF</div>
-              <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
-                Vendeur Attitude
-              </h3>
-              <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '30px' }}>
-                Comment développer une mentalité de vendeur performant et authentique.
-              </p>
+              <div>
+                <FaFilePdf size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
+                <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Guide PDF</div>
+                <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
+                  Vendeur Attitude
+                </h3>
+                <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '20px' }}>
+                  Comment développer une mentalité de vendeur performant et authentique.
+                </p>
+              </div>
               <a href="/ressources/GUIDE2.pdf" download style={styles.downloadButton}>Télécharger le guide</a>
             </div>
 
             {/* Checklist 1 */}
             <div style={styles.resourceCard}>
-              <FaClipboardList size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
-              <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Checklist</div>
-              <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
-                Auto-évaluez votre posture commerciale en 10 questions
-              </h3>
-              <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '30px' }}>
-                Évaluez rapidement votre niveau et identifiez vos axes d'amélioration.
-              </p>
+              <div>
+                <FaClipboardList size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
+                <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Checklist</div>
+                <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
+                  Auto-évaluez votre posture commerciale en 10 questions
+                </h3>
+                <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '20px' }}>
+                  Évaluez rapidement votre niveau et identifiez vos axes d'amélioration.
+                </p>
+              </div>
               <a href="/ressources/checklist1.pdf" download style={styles.downloadButton}>Télécharger la checklist</a>
             </div>
 
             {/* Checklist 2 */}
             <div style={styles.resourceCard}>
-              <FaClipboardList size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
-              <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Checklist</div>
-              <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
-                7 étapes pour structurer votre stratégie commerciale
-              </h3>
-              <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '30px' }}>
-                Un plan clair et actionnable pour organiser votre développement commercial.
-              </p>
+              <div>
+                <FaClipboardList size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
+                <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Checklist</div>
+                <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
+                  7 étapes pour structurer votre stratégie commerciale
+                </h3>
+                <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '20px' }}>
+                  Un plan clair et actionnable pour organiser votre développement commercial.
+                </p>
+              </div>
               <a href="/ressources/checklist2.pdf" download style={styles.downloadButton}>Télécharger la checklist</a>
             </div>
 
             {/* Template */}
             <div style={styles.resourceCard}>
-              <FaFileAlt size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
-              <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Template</div>
-              <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
-                Plan d'action Mindset sur 30 jours
-              </h3>
-              <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '30px' }}>
-                Programme quotidien pour transformer votre mentalité entrepreneuriale en 30 jours.
-              </p>
+              <div>
+                <FaFileAlt size={48} color="#C9A445" style={{ marginBottom: '20px' }} />
+                <div style={{ color: '#C9A445', fontWeight: '600', marginBottom: '12px' }}>Template</div>
+                <h3 style={{ fontSize: '1.45rem', fontFamily: "'Cormorant Garamond', serif", marginBottom: '12px' }}>
+                  Plan d'action Mindset sur 30 jours
+                </h3>
+                <p style={{ color: 'white', lineHeight: '1.65', marginBottom: '20px' }}>
+                  Programme quotidien pour transformer votre mentalité entrepreneuriale en 30 jours.
+                </p>
+              </div>
               <a href="/ressources/template.pdf" download style={styles.downloadButton}>Télécharger le template</a>
             </div>
 
           </div>
         </div>
       </section>
-            {/* CTA Facebook */}
+
+      {/* CTA Facebook */}
       <section style={{ 
-        padding: '120px 20px', 
+        padding: isMobile ? '60px 16px' : '120px 20px', 
         backgroundColor: '#080E24', 
         color: 'white', 
         textAlign: 'center' 
       }}>
         <div style={styles.container}>
           <h2 style={{ 
-            fontSize: '2.6rem', 
+            fontSize: isMobile ? '1.8rem' : '2.6rem', 
             fontFamily: "'Cormorant Garamond', serif", 
             marginBottom: '20px' 
           }}>
             Recevez nos conseils directement
           </h2>
           <p style={{ 
-            fontSize: '1.3rem', 
-            marginBottom: '40px', 
+            fontSize: isMobile ? '1.05rem' : '1.3rem', 
+            marginBottom: isMobile ? '25px' : '40px', 
             color: '#d1d5db',
             maxWidth: '700px',
             marginLeft: 'auto',
-            marginRight: 'auto'
+            marginRight: 'auto',
+            lineHeight: '1.6'
           }}>
             Suivez notre page Facebook professionnelle et recevez chaque semaine des conseils concrets, astuces et analyses pour développer votre entreprise.
           </p>
@@ -319,17 +343,15 @@ function Contenus() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '12px',
-              padding: '18px 40px',
+              padding: isMobile ? '14px 28px' : '18px 40px',
               backgroundColor: '#C9A445',
               color: '#080E24',
               fontWeight: '600',
               textDecoration: 'none',
               borderRadius: '8px',
-              fontSize: '1.1rem',
+              fontSize: isMobile ? '1rem' : '1.1rem',
               transition: 'all 0.3s'
             }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = '#b89339'}
-            onMouseLeave={(e) => e.target.style.backgroundColor = '#C9A445'}
           >
             Suivre notre page Facebook →
           </a>

@@ -405,7 +405,7 @@ function Reservation() {
     // GARANTIES
     garantiesGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
       gap: '32px',
       maxWidth: '800px',
       margin: '0 auto',

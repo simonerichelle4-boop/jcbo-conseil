@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 function Formation() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const [searchParams] = useSearchParams();
   const accessToken = searchParams.get('token');
   
@@ -135,19 +142,19 @@ function Formation() {
     },
     hero: {
       backgroundColor: '#080E24',
-      padding: '60px 40px',
+      padding: isMobile ? '40px 20px' : '60px 40px',
       textAlign: 'center',
     },
     heroTitle: {
       fontFamily: 'Georgia, serif',
-      fontSize: '42px',
+      fontSize: isMobile ? '28px' : '42px',
       fontWeight: '300',
       color: '#C9A445',
       marginBottom: '16px',
       margin: '0 0 16px 0',
     },
     heroSubtitle: {
-      fontSize: '23px',
+      fontSize: isMobile ? '16px' : '23px',
       color: 'rgba(255,255,255,0.7)',
       maxWidth: '600px',
       margin: '0 auto',
@@ -156,21 +163,22 @@ function Formation() {
     container: {
       maxWidth: '1200px',
       margin: '0 auto',
-      padding: '60px 40px',
+      padding: isMobile ? '40px 20px' : '60px 40px',
     },
     navigation: {
       display: 'flex',
       justifyContent: 'center',
-      gap: '20px',
+      gap: isMobile ? '10px' : '20px',
       marginBottom: '40px',
+      flexWrap: 'wrap',
     },
     navButton: (isActive, isDebloque) => ({
-      padding: '12px 24px',
+      padding: isMobile ? '10px 16px' : '12px 24px',
       backgroundColor: isActive ? '#C9A445' : (isDebloque ? '#080E24' : '#e0e0e0'),
       color: isActive ? '#ffffff' : (isDebloque ? '#ffffff' : '#999999'),
       border: 'none',
       borderRadius: '4px',
-      fontSize: '15px',
+      fontSize: isMobile ? '13px' : '15px',
       fontWeight: '500',
       cursor: isDebloque ? 'pointer' : 'not-allowed',
       transition: 'all 0.2s',
@@ -194,7 +202,7 @@ function Formation() {
     },
     modulesGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(400px, 1fr))',
       gap: '24px',
     },
     moduleCard: (isDebloque, isValide) => ({
@@ -268,7 +276,7 @@ function Formation() {
       width: '90%',
       maxHeight: '90vh',
       overflowY: 'auto',
-      padding: '40px',
+      padding: isMobile ? '24px 16px' : '40px',
     },
     modalHeader: {
       display: 'flex',
@@ -687,19 +695,20 @@ function Formation() {
             backgroundColor: '#ffffff',
             border: '3px solid #C9A445',
             borderRadius: '12px',
-            padding: '40px',
+            padding: isMobile ? '32px 20px' : '40px',
             marginTop: '40px',
             width: '100%',
             boxShadow: '0 10px 40px rgba(201, 164, 69, 0.2)',
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: isMobile ? 'column' : 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '40px'
+            gap: isMobile ? '24px' : '40px'
           }}>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, textAlign: isMobile ? 'center' : 'left' }}>
               <div style={{
                 display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
                 alignItems: 'center',
                 gap: '20px',
                 marginBottom: '20px'
@@ -719,11 +728,12 @@ function Formation() {
                 <div>
                   <h2 style={{ 
                     fontFamily: 'Georgia, serif', 
-                    fontSize: '28px', 
+                    fontSize: isMobile ? '22px' : '28px', 
                     color: '#080E24', 
                     margin: '0',
                     fontWeight: 'bold',
-                    letterSpacing: '1px'
+                    letterSpacing: '1px',
+                    textAlign: isMobile ? 'center' : 'left'
                   }}>
                     CERTIFICAT DE RÉUSSITE
                   </h2>
@@ -752,7 +762,8 @@ function Formation() {
               flexDirection: 'column',
               alignItems: 'center',
               gap: '16px',
-              minWidth: '200px'
+              width: isMobile ? '100%' : 'auto',
+              minWidth: isMobile ? 'auto' : '200px'
             }}>
               <button style={{
                 padding: '14px 32px',

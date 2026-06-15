@@ -95,6 +95,7 @@ function Header() {
       cursor: 'pointer',
       textDecoration: 'none',
       whiteSpace: 'nowrap',
+      textAlign: 'center',
     },
     btnReserver: {
       padding: '8px 18px',
@@ -107,6 +108,7 @@ function Header() {
       cursor: 'pointer',
       textDecoration: 'none',
       whiteSpace: 'nowrap',
+      textAlign: 'center',
     },
 
     // Hamburger

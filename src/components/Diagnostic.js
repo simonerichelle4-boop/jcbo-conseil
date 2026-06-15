@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Diagnostic() {
   const [sectionError, setSectionError] = useState('');
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const [formData, setFormData] = useState({
     nomPrenom: '',
     fonction: '',
@@ -149,7 +157,7 @@ function Diagnostic() {
     {
       title: 'Objectifs',
       fields: [
-        { type: 'textarea', name: 'ouDans6Mois', placeholder: 'Où voulez-vous être dans 6 mois ?', rows: 2 },
+        { type: 'textarea', name: 'ouDans 6Mois', placeholder: 'Où voulez-vous être dans 6 mois ?', rows: 2 },
         { type: 'textarea', name: 'resultatAttendu', placeholder: 'Quel résultat concret attendez-vous ?', rows: 2 },
         { type: 'text', name: 'revenuCible', placeholder: 'Objectif de revenu / chiffre à atteindre' },
       ]
@@ -197,22 +205,22 @@ function Diagnostic() {
   };
 
   return (
-    <div style={{ padding: '80px 20px', backgroundColor: '#f8f9fa' }}>
+    <div style={{ padding: isMobile ? '40px 16px' : '80px 20px', backgroundColor: '#f8f9fa' }}>
       <div style={{ maxWidth: '920px', margin: '0 auto' }}>
         
         {/* En-tête */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <h1 style={{ fontSize: '3rem', fontFamily: "'Cormorant Garamond', serif", color: '#C9A445', marginBottom: '20px' }}>
+        <div style={{ textAlign: 'center', marginBottom: isMobile ? '30px' : '50px' }}>
+          <h1 style={{ fontSize: isMobile ? '2.2rem' : '3rem', fontFamily: "'Cormorant Garamond', serif", color: '#C9A445', marginBottom: '15px' }}>
             Diagnostic Personnalisé
           </h1>
-          <p style={{ fontSize: '1.3rem', color: '#555', maxWidth: '720px', margin: '0 auto' }}>
+          <p style={{ fontSize: isMobile ? '1.1rem' : '1.3rem', color: '#555', maxWidth: '720px', margin: '0 auto' }}>
             Une analyse approfondie de votre activité pour transformer vos défis en résultats concrets.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} style={{ 
           backgroundColor: 'white', 
-          padding: '45px', 
+          padding: isMobile ? '24px 16px' : '45px', 
           borderRadius: '14px', 
           boxShadow: '0 10px 32px rgba(0,0,0,0.08)' 
         }}>
@@ -221,7 +229,7 @@ function Diagnostic() {
               <div style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.8rem', color: '#C9A445', fontWeight: '700', marginBottom: '8px' }}>
                 Section {currentSection} sur {sections.length}
               </div>
-              <h2 style={{ color: '#080E24', margin: 0, fontFamily: "'Cormorant Garamond', serif", fontSize: '2rem' }}>
+              <h2 style={{ color: '#080E24', margin: 0, fontFamily: "'Cormorant Garamond', serif", fontSize: isMobile ? '1.6rem' : '2rem' }}>
                 {currentSectionData.title}
               </h2>
             </div>
@@ -277,7 +285,7 @@ function Diagnostic() {
 
               if (field.type === 'radioGroup') {
                 return (
-                  <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '10px' : '18px', flexWrap: 'wrap' }}>
                     {field.options.map((option) => (
                       <label key={option} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.97rem', color: '#444' }}>
                         <input
@@ -334,7 +342,7 @@ function Diagnostic() {
             );
           })}
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap', marginTop: '30px' }}>
+          <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', gap: '12px', marginTop: '30px' }}>
             {currentSection > 1 && (
               <button
                 type="button"
@@ -346,7 +354,7 @@ function Diagnostic() {
                   backgroundColor: 'white',
                   color: '#080E24',
                   cursor: 'pointer',
-                  minWidth: '160px'
+                  minWidth: isMobile ? '100%' : '160px'
                 }}
               >
                 ← Précédent
@@ -358,14 +366,14 @@ function Diagnostic() {
                 type="button"
                 onClick={goNext}
                 style={{
-                  marginLeft: 'auto',
+                  marginLeft: isMobile ? '0' : 'auto',
                   padding: '15px 32px',
                   borderRadius: '10px',
                   border: 'none',
                   backgroundColor: '#080E24',
                   color: 'white',
                   cursor: 'pointer',
-                  minWidth: '160px'
+                  minWidth: isMobile ? '100%' : '160px'
                 }}
               >
                 Suivant →
@@ -376,7 +384,7 @@ function Diagnostic() {
               <button
                 type="submit"
                 style={{
-                  marginLeft: 'auto',
+                  marginLeft: isMobile ? '0' : 'auto',
                   padding: '16px 32px',
                   borderRadius: '10px',
                   border: 'none',
@@ -384,7 +392,7 @@ function Diagnostic() {
                   color: '#080E24',
                   fontWeight: '700',
                   cursor: 'pointer',
-                  minWidth: '180px'
+                  minWidth: isMobile ? '100%' : '180px'
                 }}
               >
                 Soumettre
@@ -402,7 +410,8 @@ const inputStyle = {
   borderRadius: '8px',
   border: '1px solid #ddd',
   fontSize: '1.05rem',
-  width: '100%'
+  width: '100%',
+  boxSizing: 'border-box'
 };
 
 const textareaStyle = {
@@ -411,7 +420,8 @@ const textareaStyle = {
   borderRadius: '8px',
   border: '1px solid #ddd',
   fontSize: '1.05rem',
-  marginBottom: '20px'
+  marginBottom: '20px',
+  boxSizing: 'border-box'
 };
 
 export default Diagnostic;

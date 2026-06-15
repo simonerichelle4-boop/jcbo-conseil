@@ -4,6 +4,13 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import logo from "./images/logo_jcbo.jpeg";
 
 function Footer() {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   // Helper link component to provide gold hover effect for footer links
   const HoverLink = ({ to, href, children, style: baseStyle }) => {
@@ -17,33 +24,33 @@ function Footer() {
     footer: {
       backgroundColor: "#020B3A",
       color: "#ffffff",
-      padding: "80px 60px 30px",
+      padding: isMobile ? "40px 20px 20px" : "80px 60px 30px",
     },
 
     container: {
       display: "flex",
       justifyContent: "space-between",
       flexWrap: "wrap",
-      gap: "60px",
+      gap: isMobile ? "30px" : "60px",
       maxWidth: "1280px",
       margin: "0 auto",
     },
 
     column: {
-      flex: "1",
-      minWidth: "220px",
+      flex: isMobile ? "1 1 100%" : "1",
+      minWidth: isMobile ? "100%" : "220px",
     },
 
     logo: {
       width: "90px",
-      marginBottom: "25px",
+      marginBottom: isMobile ? "15px" : "25px",
     },
 
     slogan: {
       color: "#D4A437",
-      fontSize: "25px",
+      fontSize: isMobile ? "20px" : "25px",
       lineHeight: "1.5",
-      marginBottom: "25px",
+      marginBottom: isMobile ? "15px" : "25px",
       fontFamily: "serif",
       fontWeight: "400",
     },
@@ -55,8 +62,8 @@ function Footer() {
     },
 
     title: {
-      fontSize: "30px",
-      marginBottom: "30px",
+      fontSize: isMobile ? "22px" : "30px",
+      marginBottom: isMobile ? "15px" : "30px",
       fontFamily: "serif",
       fontWeight: "400",
     },
@@ -84,6 +91,7 @@ function Footer() {
 
     socialContainer: {
       display: "flex",
+      justifyContent: isMobile ? "center" : "flex-start",
       gap: "15px",
       marginTop: "25px",
     },
@@ -102,7 +110,7 @@ function Footer() {
 
     bottom: {
       borderTop: "1px solid #2C3568",
-      marginTop: "60px",
+      marginTop: isMobile ? "40px" : "60px",
       paddingTop: "25px",
       display: "flex",
       justifyContent: "space-between",
@@ -111,12 +119,17 @@ function Footer() {
       maxWidth: "1280px",
       marginLeft: "auto",
       marginRight: "auto",
+      flexDirection: isMobile ? "column" : "row",
+      alignItems: isMobile ? "center" : "stretch",
+      textAlign: isMobile ? "center" : "left",
     },
 
     footerLinks: {
       display: "flex",
       gap: "30px",
       flexWrap: "wrap",
+      justifyContent: isMobile ? "center" : "flex-start",
+      width: isMobile ? "100%" : "auto",
     },
   };
 

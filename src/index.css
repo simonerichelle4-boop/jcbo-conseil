@@ -1,3 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -139,5 +148,32 @@ code {
 @media (max-width: 480px) {
   body {
     font-size: 13px;
+  }
+}
+
+/* Articles Styling */
+.article-container {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.85;
+  font-size: 1.08rem;
+  box-sizing: border-box;
+}
+
+.article-title {
+  font-size: 2.8rem;
+  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 20px;
+  color: #080E24;
+}
+
+@media (max-width: 768px) {
+  .article-container {
+    padding: 30px 16px;
+  }
+  .article-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
   }
 }
