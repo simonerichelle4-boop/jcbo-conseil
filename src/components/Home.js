@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiTrendingUp, FiCast, FiBookOpen } from 'react-icons/fi';
-import heroBg from "./images/hero_portrait.png";
+import heroBg from "./images/nouvelle_couverture.jpeg";
 import boyangImg from "./images/boyang.jpeg";
 
 function Accueil() {
@@ -15,7 +15,8 @@ function Accueil() {
 
   const styles = {
     hero: {
-      minHeight: isMobile ? '100vh' : '100vh',
+      minHeight: isMobile ? 'auto' : '155vh',
+      height: isMobile ? '100vh' : 'auto',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -25,6 +26,12 @@ function Accueil() {
       color: 'white',
       textAlign: 'center',
       padding: '0 20px',
+      ...(isMobile ? {} : {
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
+      }),
     },
     heroImage: {
       position: 'absolute',
@@ -33,21 +40,18 @@ function Accueil() {
       width: '100%',
       height: '100%',
       objectFit: 'cover',
-      objectPosition: isMobile ? 'center 30%' : 'center center',
+      objectPosition: 'center center',
     },
     heroOverlay: {
       position: 'absolute',
       top: 0, left: 0, right: 0, bottom: 0,
-      background: isMobile
-        ? 'linear-gradient(to bottom, rgba(8,14,36,0.3) 0%, rgba(8,14,36,0.55) 50%, rgba(8,14,36,0.75) 100%)'
-        : 'linear-gradient(to bottom, rgba(8,14,36,0.2) 0%, rgba(8,14,36,0.45) 50%, rgba(8,14,36,0.7) 100%)',
+      backgroundColor: isMobile ? 'rgba(0, 0, 0, 0.45)' : 'rgba(0, 0, 0, 0.15)',
       zIndex: 1,
     },
     heroContent: {
       position: 'relative',
       zIndex: 2,
       maxWidth: '900px',
-      marginTop: isMobile ? '40px' : '0',
     },
     h1: {
       fontSize: isMobile ? '2rem' : '3.8rem',
@@ -55,19 +59,16 @@ function Accueil() {
       marginBottom: '25px',
       fontFamily: "'Cormorant Garamond', serif",
       fontWeight: '600',
-      textShadow: '0 2px 8px rgba(0,0,0,0.3)',
     },
     subtitle: {
       fontSize: isMobile ? '1rem' : '1.6rem',
       marginBottom: '15px',
       color: '#e5e7eb',
-      textShadow: '0 1px 4px rgba(0,0,0,0.3)',
     },
     credibility: {
       fontSize: isMobile ? '0.9rem' : '1.2rem',
       marginBottom: '40px',
       color: '#d1d5db',
-      textShadow: '0 1px 4px rgba(0,0,0,0.3)',
     },
     buttons: {
       display: 'flex',
