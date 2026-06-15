@@ -21,10 +21,9 @@ function Accueil() {
       justifyContent: 'center',
       position: 'relative',
       backgroundImage: `url(${heroBg})`,
-      backgroundSize: isMobile ? 'contain' : 'cover',
-      backgroundPosition: isMobile ? 'center center' : 'center',
-      backgroundRepeat: isMobile ? 'no-repeat' : 'no-repeat',
-      backgroundColor: isMobile ? '#080E24' : 'transparent',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
       color: 'white',
       textAlign: 'center',
       padding: '0 20px',
@@ -162,7 +161,7 @@ function Accueil() {
   };
 
   return (
-    <div role="main">
+    <div role="main" id="main-content">
       {/* HERO SECTION */}
       <section style={styles.hero}>
         <div style={styles.heroOverlay}></div>
