@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiTrendingUp, FiCast, FiBookOpen } from 'react-icons/fi';
-import heroBg from "./images/nouvelle_couverture.jpeg";
+import heroBg from "./images/couverture_modifiee.png";
 import boyangImg from "./images/boyang.jpeg";
 
 function Accueil() {
@@ -15,38 +15,24 @@ function Accueil() {
 
   const styles = {
     hero: {
-      minHeight: isMobile ? 'auto' : '155vh',
-      height: isMobile ? '100vh' : 'auto',
+      minHeight: isMobile ? '100vh' : '155vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      overflow: 'hidden',
-      backgroundColor: '#080E24',
+      backgroundImage: `url(${heroBg})`,
+      backgroundSize: isMobile ? 'cover' : 'cover',
+      backgroundPosition: isMobile ? 'center 35%' : 'center',
+      backgroundRepeat: isMobile ? 'no-repeat' : 'no-repeat',
+      backgroundColor: isMobile ? '#080E24' : 'transparent',
       color: 'white',
       textAlign: 'center',
       padding: '0 20px',
-      ...(isMobile ? {} : {
-        backgroundImage: `url(${heroBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        backgroundRepeat: 'no-repeat',
-      }),
-    },
-    heroImage: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      objectPosition: 'center center',
     },
     heroOverlay: {
       position: 'absolute',
       top: 0, left: 0, right: 0, bottom: 0,
-      backgroundColor: isMobile ? 'rgba(0, 0, 0, 0.45)' : 'rgba(0, 0, 0, 0.15)',
-      zIndex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.15)',
     },
     heroContent: {
       position: 'relative',
@@ -98,6 +84,8 @@ function Accueil() {
       cursor: 'pointer',
       transition: 'all 0.3s',
     },
+
+    // Chiffres clés
     chiffres: {
       backgroundColor: '#C9A445',
       color: '#080E24',
@@ -174,16 +162,9 @@ function Accueil() {
   };
 
   return (
-    <div role="main" id="main-content">
+    <div role="main">
       {/* HERO SECTION */}
       <section style={styles.hero}>
-        {isMobile && (
-          <img
-            src={heroBg}
-            alt=""
-            style={styles.heroImage}
-          />
-        )}
         <div style={styles.heroOverlay}></div>
         <div style={styles.heroContent}>
           <h1 style={styles.h1}>
