@@ -7,8 +7,8 @@ function Reservation() {
 
   const [selected, setSelected] = useState(null);
   const [faqOuvert, setFaqOuvert] = useState(null);
-  const [paiementEffectue, setPaiementEffectue] = useState(false);
-  const [tokenAcces, setTokenAcces] = useState(null);
+  const [paiementEffectue] = useState(false);
+  const [tokenAcces] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -20,6 +20,35 @@ function Reservation() {
     window.addEventListener('resize', checkMobile);
     
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const origins = ['https://assets.calendly.com', 'https://calendly.com'];
+
+    const links = origins.map((href) => {
+      let link = document.querySelector(`link[rel="preconnect"][href="${href}"]`);
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'preconnect';
+        link.href = href;
+        document.head.appendChild(link);
+      }
+      return link;
+    });
+
+    if (!document.querySelector('script[data-calendly-widget]')) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.dataset.calendlyWidget = 'true';
+      document.body.appendChild(script);
+    }
+
+    return () => {
+      links.forEach((link) => {
+        if (link.parentNode) link.parentNode.removeChild(link);
+      });
+    };
   }, []);
 
   const prestations = [
@@ -105,15 +134,6 @@ function Reservation() {
     // Note: Les détails du rendez-vous seront confirmés par email Calendly
     // L'intégration iframe standard est utilisée pour la simplicité
   }, []);
-
-  // Générer un token d'accès unique
-  const genererToken = () => {
-    const timestamp = Date.now().toString(36);
-    const random = Math.random().toString(36).substring(2, 15);
-    const random2 = Math.random().toString(36).substring(2, 15);
-    return `${timestamp}-${random}-${random2}`;
-  };
-
 
     // Fonction de paiement Stripe
   const handlePaiement = () => {
