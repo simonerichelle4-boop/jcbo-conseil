@@ -47,6 +47,25 @@ function Contact() {
     e.preventDefault();
     console.log("Formulaire envoyé :", { ...formData, service: preselectedService });
     alert("Merci ! Votre demande a bien été envoyée. Nous vous recontacterons rapidement.");
+    
+    // Réinitialiser le formulaire
+    setFormData({
+      nomPrenom: '',
+      fonction: '',
+      entreprise: '',
+      email: '',
+      telephone: '',
+      paysVille: '',
+      typeClient: '',
+      niveauActivite: '',
+      objetDemande: [],
+      description: '',
+      urgence: '',
+      pretInvestir: '',
+    });
+    
+    // Réinitialiser le formulaire HTML
+    e.target.reset();
   };
 
   return (

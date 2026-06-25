@@ -142,7 +142,7 @@ function Header() {
         <Link to="/" style={styles.logoContainer}>
           <img src={logo} alt="JCBO Conseil" width="56" height="56" style={styles.logoImg} />
           <div>
-            <p style={styles.logoTitle}>JCBO Conseil</p>
+            <p style={styles.logoTitle}>JCBO_Conseil</p>
             <p style={styles.logoSubtitle}>Conseil • Coaching • Formation</p>
           </div>
         </Link>
